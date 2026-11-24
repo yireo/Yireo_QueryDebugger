@@ -8,7 +8,23 @@
 <!-- badges.specs.end -->
 
 
-This Magento 2 module purposefully forces the second argument `$logQuery` of a collection its `load($printQuery = false, $logQuery = false)` method to be always true (so `$logQuery = true`). This logs any query related to collections to the `var/log/debug.log` file. Use with care.
+This Magento 2 module logs the SQL query of every database collection (`Magento\Framework\Data\Collection\AbstractDb::load()`) to the file `var/log/query_debugger.log`. It is meant for development only.
+
+## Configuration
+The logging is disabled by default. It only works when both conditions are met:
+
+- Magento runs in developer mode (`bin/magento deploy:mode:set developer`);
+- The setting **Stores > Configuration > Advanced > Developer > Query Debugger > Enabled** is set to **Yes**:
+
+```bash
+bin/magento config:set dev/query_debugger/enabled 1
+```
+
+The setting `dev/query_debugger/max_queries` (default `500`, use `0` for no limit) limits the number of queries logged per request. Line breaks within queries are replaced with spaces, so that every query takes up exactly one line.
+
+## Warning
+- The logged queries contain the actual values used in filters: email addresses, names, addresses, password reset tokens, order data and more. Treat `var/log/query_debugger.log` as sensitive personal data: never use this module in production, never share the log file and delete it when done.
+- Every collection load is logged, also of anonymous visitors, cron and CLI. The log file grows quickly: configure `logrotate` or delete the file regularly.
 ## Current status
 
 <!-- badges.test.start -->
