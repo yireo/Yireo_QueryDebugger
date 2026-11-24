@@ -11,7 +11,7 @@
         </arguments>
     </virtualType>
 
-    <virtualType name="Yireo\QueryDebugger\Logger\Logger" type="Magento\Framework\Logger\Monolog">
+    <virtualType name="Yireo\QueryDebugger\Logger\Logger" type="Monolog\Logger">
         <arguments>
             <argument name="name" xsi:type="string">queryDebugger</argument>
             <argument name="handlers" xsi:type="array">

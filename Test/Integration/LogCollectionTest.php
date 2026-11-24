@@ -8,6 +8,7 @@ use Magento\Framework\App\State;
 use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\Logger\Handler\Base;
 use Magento\Framework\Logger\Monolog;
+use Monolog\Logger;
 use Magento\Store\Model\ResourceModel\Store\Collection as StoreCollection;
 use Magento\TestFramework\Helper\Bootstrap;
 use Monolog\Handler\TestHandler;
@@ -45,7 +46,7 @@ class LogCollectionTest extends TestCase
         $property = new ReflectionProperty(LogCollection::class, 'logger');
         $logger = $property->getValue($plugin);
 
-        $this->assertInstanceOf(Monolog::class, $logger);
+        $this->assertInstanceOf(Logger::class, $logger);
         $this->assertSame('queryDebugger', $logger->getName());
         $handlers = $logger->getHandlers();
         $this->assertCount(1, $handlers);

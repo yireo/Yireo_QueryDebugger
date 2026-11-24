@@ -19,9 +19,6 @@ class LogCollection
     ) {
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function beforeLoad(AbstractDb $collection, mixed $printQuery = false, mixed $logQuery = false): ?array
     {
         if ($this->resolving || $collection->isLoaded() || !$this->isEnabled()) {
