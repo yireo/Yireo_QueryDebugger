@@ -42,13 +42,13 @@ class ConfigTest extends TestCase
 
     public function testMaxQueriesIsNeverNegative(): void
     {
-        $scopeConfig = $this->createMock(ScopeConfigInterface::class);
-        $scopeConfig->method('getValue')->willReturnOnConsecutiveCalls('25', '-3', null);
+        foreach (['25' => 25, '-3' => 0, '' => 0] as $value => $expected) {
+            $scopeConfig = $this->createMock(ScopeConfigInterface::class);
+            $scopeConfig->method('getValue')->willReturn((string)$value);
 
-        $config = new Config($scopeConfig, $this->getState(State::MODE_DEVELOPER));
-        $this->assertSame(25, $config->getMaxQueries());
-        $this->assertSame(0, $config->getMaxQueries());
-        $this->assertSame(0, $config->getMaxQueries());
+            $config = new Config($scopeConfig, $this->getState(State::MODE_DEVELOPER));
+            $this->assertEquals($expected, $config->getMaxQueries());
+        }
     }
 
     private function getState(string $mode): State
