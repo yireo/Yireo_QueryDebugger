@@ -1,7 +1,10 @@
 {
     "module_name": "Yireo_QueryDebugger",
     "composer_name": "yireo/module-query-debugger",
-    "sequence": [],
+    "sequence": [
+        "Magento_Config",
+        "Magento_Store"
+    ],
     "phpcs_severity": "6",
     "phpstan_level": "5"
 }

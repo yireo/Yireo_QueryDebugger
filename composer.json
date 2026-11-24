@@ -1,11 +1,14 @@
 {
     "name": "yireo/module-query-debugger",
     "version": "1.0.0",
-    "description": "N/A",
+    "description": "Development only: Log the SQL queries of Magento 2 collections to var/log/query_debugger.log",
     "type": "magento2-module",
     "require": {
         "magento/framework": "^103.0",
-        "php": ">=8.2 <8.6"
+        "magento/module-config": "^101.0",
+        "magento/module-store": "^101.0",
+        "php": ">=8.2 <8.6",
+        "psr/log": "^1.0 || ^2.0 || ^3.0"
     },
     "license": [
         "OSL-3.0"

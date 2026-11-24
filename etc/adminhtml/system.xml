@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="dev">
+            <group id="query_debugger" translate="label comment" sortOrder="900" showInDefault="1">
+                <label>Query Debugger</label>
+                <comment>Logs the SQL of collection loads to var/log/query_debugger.log. Only works in developer mode. The log contains personal data: never use this in production.</comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="max_queries" translate="label comment" type="text" sortOrder="20" showInDefault="1">
+                    <label>Maximum queries per request</label>
+                    <comment>Use 0 for no limit.</comment>
+                    <validate>validate-digits validate-zero-or-greater</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

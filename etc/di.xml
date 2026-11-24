@@ -1,7 +1,28 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Framework\Data\Collection">
-        <plugin name="Yireo_QueryDebugger::logCollection" type="Yireo\QueryDebugger\Plugin\LogCollection" />
+    <type name="Magento\Framework\Data\Collection\AbstractDb">
+        <plugin name="Yireo_QueryDebugger::logCollection" type="Yireo\QueryDebugger\Plugin\LogCollection"/>
+    </type>
+
+    <virtualType name="Yireo\QueryDebugger\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/query_debugger.log</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Yireo\QueryDebugger\Logger\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">queryDebugger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="file" xsi:type="object">Yireo\QueryDebugger\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Yireo\QueryDebugger\Plugin\LogCollection">
+        <arguments>
+            <argument name="logger" xsi:type="object">Yireo\QueryDebugger\Logger\Logger</argument>
+        </arguments>
     </type>
 </config>
