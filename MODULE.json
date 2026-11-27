@@ -7,5 +7,39 @@
         "Magento_Store"
     ],
     "phpcs_severity": "6",
-    "phpstan_level": "5"
+    "phpstan_level": "5",
+    "php_versions": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+    ],
+    "skip_magento_versions": [],
+    "skip_css_utils": false,
+    "modules": [
+        "Magento_Backend",
+        "Magento_Config",
+        "Magento_Csp",
+        "Magento_Directory",
+        "Magento_Store",
+        "Magento_Theme"
+    ],
+    "components": [],
+    "config": [
+        {
+            "path": "dev/query_debugger/enabled",
+            "label": "Query Debugger > Enabled",
+            "description": ""
+        },
+        {
+            "path": "dev/query_debugger/max_queries",
+            "label": "Query Debugger > Maximum queries per request",
+            "description": ""
+        }
+    ],
+    "tests": {
+        "unit": 9,
+        "integration": 6,
+        "functional": 0
+    }
 }
